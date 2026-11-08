@@ -1,0 +1,276 @@
+@use "sass:math";
+//<МИКСИНЫ>
+@mixin anim($time,$delay){-webkit-transition: all $time ease $delay;-moz-transition: all $time ease $delay;-ms-transition: all $time ease $delay;-o-transition: all $time ease $delay;transition: all $time ease $delay;}
+@mixin anim_cubic($time,$delay){-webkit-transform: all $time cubic-bezier(0.68,-0.55,0.265,1.55) $delay;-moz-transform: all $time cubic-bezier(0.68,-0.55,0.265,1.55) $delay;-ms-transform: all $time cubic-bezier(0.68,-0.55,0.265,1.55) $delay;-o-transform: all $time cubic-bezier(0.68,-0.55,0.265,1.55) $delay;transform: all $time cubic-bezier(0.68,-0.55,0.265,1.55) $delay;}
+@mixin scale($num){-moz-transform: scale($num);-ms-transform: scale($num);-webkit-transform: scale($num);-o-transform: scale($num);transform: scale($num);}
+@mixin scew($num){-webkit-transform: skewX($num);-moz-transform: skewX($num);-ms-transform: skewX($num);-o-transform: skewX($num);transform: skewX($num);}
+@mixin cnt ($h){display: flex;flex-direction: column;height: $h;text-align: center;align-items: stretch;justify-content: center;}
+@mixin tr ($x,$y,$z){transform: translate3d($x, $y, $z);}
+@mixin rotate($deg){-moz-transform: rotate($deg);-ms-transform: rotate($deg);-webkit-transform: rotate($deg);-o-transform: rotate($deg);transform: rotate($deg);}
+@mixin flexbox(){display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: -webkit-flex;display: flex;font-size: 0;}
+@mixin flexboxinline(){display:-webkit-inline-flex;display:-moz-inline-flex;display:-ms-inline-flex;display:-o-inline-flex;display:inline-flex;}
+@mixin flexorder($val){-webkit-box-ordinal-group: $val;-moz-box-ordinal-group: $val;-ms-flex-order: $val;-webkit-order: $val;order: $val;}
+//Percent
+@function percent($px, $from) {
+	$result: math.div($px, $from) * 100%;
+	@return $result;
+}
+//REM
+@function rem($px) {
+	$result: math.div($px, 16) + rem;
+	@return $result;
+}
+//EM
+@function em($px, $current: 16) {
+	$result: math.div($px, $current) + em;
+	@return $result;
+}
+
+// Адаптивна властивість (clamp)
+@mixin adaptiveValue($property, $startSize, $minSize, $keepSize: 0, $widthFrom: $containerWidth, $widthTo: $minWidth) {
+	@if ($startSize==0) {
+		$startSize: 0.000001;
+	}
+	@if ($minSize==0) {
+		$minSize: 0.000001;
+	}
+
+// @mixin adaptiveValue($property, $startSize, $minSize, $widthFrom: $containerWidth, $widthTo: $minWidth, $keepSize: 0) {
+// 	@if ($startSize==0) {
+// 		$startSize: 0.000001;
+// 	}
+// 	@if ($minSize==0) {
+// 		$minSize: 0.000001;
+// 	}
+
+	// Для calc();
+	$addSize: math.div($startSize - $minSize, 16);
+
+	@if ($widthFrom == $containerWidth and $maxWidthContainer == 0) {
+		$widthFrom: $maxWidth;
+	}
+
+	// Брейк-поїнти в EM
+	$widthFromMedia: em($widthFrom);
+	$widthToMedia: em($widthTo);
+
+	// Формула плаваючого значення
+	// Источник: https://css-tricks.com/linearly-scale-font-size-with-css-clamp-based-on-the-viewport/
+	$slope: math.div(($startSize - $minSize), ($widthFrom - $widthTo));
+	$yIntersection: -$widthTo * $slope + $minSize;
+	@if ($yIntersection==0) {
+		$yIntersection: 0.000001;
+	}
+	$flyValue: #{rem($yIntersection)}" + " #{$slope * 100}vw;
+
+	// Отримання значення властивості
+	$propertyValue: #{"clamp(" rem($minSize) "," $flyValue "," rem($startSize) ")"};
+	// Якщо негативні значення
+	@if ($minSize > $startSize) {
+		$propertyValue: #{"clamp(" rem($startSize) "," $flyValue "," rem($minSize) ")"};
+	}
+
+	// Встановлюємо значення за замовчуванням
+	@if $keepSize != 1 and $keepSize != 3 {
+		@media (min-width: $widthFromMedia) {
+			#{$property}: rem($startSize);
+		}
+	}
+	// Адаптуємо розмір у проміжку між зазначеними ширинами в'юпорту
+	@media (min-width: $widthToMedia) and (max-width: $widthFromMedia) {
+		// Якщо підтримується clamp();
+		@supports (#{$property}: $propertyValue) {
+			#{$property}: $propertyValue;
+		}
+		// Якщо не підтримується clamp();
+		@supports not (#{$property}: $propertyValue) {
+			#{$property}: calc(#{rem($minSize)} + #{$addSize} * (100vw - #{rem($widthTo)}) / #{math.div($widthFrom, 16) - math.div($widthTo, 16)});
+		}
+	}
+	@if $keepSize != 1 and $keepSize != 2 {
+		@media (max-width: $widthToMedia) {
+			#{$property}: rem($minSize);
+		}
+	}
+}
+//</МИКСИНЫ>
+
+/*Шрифты*/
+//&display=swap Добавить при подключении через плагин
+// &subset=cyrillic-ext
+@import url("https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic&display=swap");
+// @import url("https://fonts.googleapis.com/css?family=Space+Grotesk:regular,500,700&display=swap");
+// @import url("https://fonts.googleapis.com/css?family=Poppins:regular,600,700&subset=cyrillic-ext");
+// @import url("https://fonts.googleapis.com/css?family=League+Spartan:300,regular,500,600,700&subset=cyrillic-ext");
+// @import url("https://fonts.googleapis.com/css?family=Lato:regular,500&subset=cyrillic-ext");
+//Подключить локальныке файлы шрифтов=========================================================
+// @import "fonts/fonts";
+
+//Подключение иконочных шрифтов=========================================================
+//Подключить локальныке файлы иконочного шрифта=========================================================
+@import "fonts/icons";
+
+//<Шрифт по умолчанию>
+$fontFamily: "Inter";
+$fontSize: rem(16); 
+
+//Основные цвета
+$mainColor: #090A0D; // Цвет шрифта по умолчанию
+$redColor: #ED101A;
+// $blackColor: #191A23;
+$greenColor: #B9FF66;
+$darckColor: #262731;
+$whiteColor:#ffffff;
+$greyColor:#899099;
+$liteGreyColor:#D1D5DB;
+$bgColor:#08090C;
+$itemBgColor:#101217;
+// $purpleColor:#7E74F1;
+
+
+// НАСТРОЙКИ ===============================================================================================================================================================================================================================================================================================
+// Минимальная ширина страницы
+$minWidth: 320;
+// Ширина полотна (макета)
+$maxWidth: 1440;
+// Ширина ограничивающего контейнера (0 = нет ограничения)
+$maxWidthContainer: 1200;
+// Общий отступ у контейнера
+// (30 = по 15px слева и справа, 0 = нет отступа)
+$containerPadding: 60;
+
+// Тип адаптива:
+// 1 = отзывчивость (у контейнера нет брейкпоинтов),
+// 2 = по брейк-поинтам (контейнер меняет свою ширину по брейк-поинтам)
+$responsiveType: 1;
+
+// Ширина страбатывания первого брейкпоинта
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+// Брейк-поинты
+$pc: em($containerWidth); // ПК, ноутбуки, некоторые планшеты в горизонтальном положении
+$tablet: em(991.98); // Планшеты, некоторые телефоны в горизонтальном положении
+$mobile: em(767.98); // Телефоны L
+$mobileSmall: em(479.98); // Телефоны S
+
+//<Переменные>
+$minwidth:320px;
+$mw:970;
+$md1:$mw+12;
+$md2:991.98;
+$md3:767.98;
+$md4:479.98;
+//</Переменные>
+
+//<ОБНУЛЕНИЕБ, ОБЩИЕ ПАРАМЕТРЫ>
+@import "null";
+body {
+	// background-color: $blackColor;
+	&._lock {
+		overflow: hidden;
+		@media (max-width: $md3+px){
+			
+		}
+	}
+}
+//</ОБНУЛЕНИЕБ, ОБЩИЕ ПАРАМЕТРЫ>
+
+//<ОБОЛОЧКА>
+.wrapper{
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	overflow: hidden;
+}
+//</ОБОЛОЧКА>
+
+//<ОСНОВНАЯ СЕТКА>
+
+// Обмежуючий контейнер ======================================================================================================================================================================================================================
+
+/*
+(i) Стилі будуть застосовуватись до
+всіх класів, що містять *__container
+Наприклад header__container, main__container і т.п.
+Сніппет (HTML): cnt
+*/
+
+// [class*="__container"] {
+// 	max-width: rem(1440);
+// 	margin: 0 auto;
+// }
+
+@if ($responsiveType==1) {
+	// Чуйна
+	[class*="__container"] {
+		// min-height: 100%;
+		@if ($maxWidthContainer>0) {
+			max-width: rem($containerWidth);
+			box-sizing: content-box;
+			margin: 0 auto;
+		}
+		// @if ($containerPadding>0) {
+		// 	@if ($maxWidthContainer>0) {
+		// 		padding: 0 rem(math.div($containerPadding, 2));
+		// 	} 	@else {
+		// 		@include adaptiveValue("padding-left", math.div($containerPadding, 2), 15);
+		// 		@include adaptiveValue("padding-right", math.div($containerPadding, 2), 15);
+		// 	}
+		// }
+	}
+} @else {
+	// Брейк-поїнтами
+	[class*="__container"] {
+		margin: 0 auto;
+		@if ($maxWidthContainer>0) {
+			max-width: rem($containerWidth);
+		} @else {
+			@if ($containerPadding>0) {
+				padding: 0 rem(math.div($containerPadding, 2));
+			}
+		}
+		@media (max-width: $pc) {
+			max-width: rem(970);
+		}
+		@media (max-width: $tablet) {
+			max-width: rem(750);
+		}
+		@media (max-width: $mobile) {
+			max-width: none;
+			@if ($containerPadding>0 and $maxWidthContainer>0) {
+				padding: 0 rem(math.div($containerPadding, 2));
+			}
+		}
+	}
+}
+
+
+
+// ._container{
+//    max-width: $mw+px;
+//    margin: 0 auto;
+// 	padding: 0px 10px;
+// }
+//</ОСНОВНАЯ СЕТКА> 
+//<ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>
+@import "header";
+@import "footer";
+@import "ui.scss";
+@import "common.scss";
+// Для підключення/вимкнення конкретних стилів дивись base.scss
+@import "base.scss";
+// @import "_forms";
+@import "base/swiper.scss";
+// Підключення стилів окремих сторінок
+@import "home";
+//</ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВА>
+
+
+
+//<ОСНОВНОЙ БЛОК>
+
+
+//=======================================================================================================================
+
+//=======================================================================================================================
+//</ОСНОВНОЙ БЛОК>

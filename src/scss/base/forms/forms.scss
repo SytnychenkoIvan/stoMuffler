@@ -1,0 +1,114 @@
+//<FORM>
+// Сніппет (HTML):
+.form {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+
+	margin: 0 auto;
+	max-width: rem(800);
+	background-color: $itemBgColor;
+	border-radius: 20px;
+	gap: rem(30);
+	position: relative;
+	@media (max-width: em(430)){
+		// flex-direction: column;
+	}
+	@media (max-width:$mobile){
+		display: flex;
+		flex-direction: column;
+	}
+	p{
+		color: $greyColor;
+		@include adaptiveValue("font-size", 14, 12);
+		line-height: rem(16);
+	}
+	&__row {
+	}
+	&__column {
+	}
+	&__line {
+	}
+	&__input {
+		background-color: $mainColor;
+		border: 1px solid $darckColor;
+		border-radius: 10px;
+		// height: rem(64);
+		flex: 1 1 auto;
+		padding: rem(20) rem(20);
+		color: $whiteColor;
+		font-weight: 500;
+			@include adaptiveValue("font-size", 16, 12);
+
+		&::placeholder{
+			color: $greyColor;
+			@include adaptiveValue("font-size", 16, 12);
+		}
+		&._form-error{
+			color: red;
+			&::placeholder{
+				color: red;
+			}
+		}
+	}
+	&__button {
+	}
+	&__error {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		color: red;
+		font-size: rem(16);
+		margin-top: rem(10);
+		padding-left: rem(26);
+	}
+	textarea{
+		padding-top: rem(20);
+		resize: none;
+		min-height: rem(150)
+	}
+}
+.box-1{
+}
+.box-2{
+}
+.box-3{
+	grid-column-start: 1;
+  grid-column-end: 3;
+}
+//</FORM>
+
+// <BUTTONS>
+// Сніппет (HTML): btn
+@import "button";
+
+// <INPUTS>
+// Сніппет (HTML): inp
+// @import "input";
+
+// <CHECK>
+// Сніппет (HTML): chk
+// @import "checkbox";
+
+// <RADIO>
+// Сніппет (HTML): opt
+// @import "radio";
+
+// <SELECT>
+// Сніппет (HTML): sel
+// @import "select";
+
+// <RATING>
+// Сніппет (HTML): rating
+// @import "rating";
+
+// <QUANTITY>
+// Сніппет (HTML): qa
+// @import "quantity";
+
+// <RANGE>
+// Сніппет (HTML):
+// @import "range";
+
+// <CALENDAR>
+// Сніппет (HTML):
+// @import "datepicker";
