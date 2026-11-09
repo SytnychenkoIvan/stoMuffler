@@ -155,7 +155,6 @@
 		// .actions__tell
 
 		&__tell {
-			// @include adaptiveValue("font-size", 16, 14);
 		}
 		
 		// .actions__apointment
@@ -170,13 +169,28 @@
 .action-apointment {
 }
 .shop-status {
-		display: inline-flex;
-		gap: 10px;
-		justify-content: flex-end;
-		@media (max-width:$mobile){
-			justify-content: flex-start;
-			margin-bottom: rem(30);
-			// @include adaptiveValue("margin-bottom",30 ,20 );
+	display: flex;
+	flex-direction: column;
+	gap: rem(20);
+	align-items: end;
+	@media (max-width:$mobile){
+		align-items: start;
+		// flex-direction: row;
+		// justify-content: space-between;
+		margin-bottom: rem(50);
+		// @include adaptiveValue("margin-bottom",30 ,20 );
+	}
+	
+	&__current{
+			display: inline-flex;
+			gap: 10px;
+			padding-right: rem(120);
+			@media (max-width:$mobile){
+				padding-right: rem(0);
+			}
+			// justify-content: flex-start;
+			// align-items: ;
+
 		}
 		// .shop-status__indicator
 
@@ -195,6 +209,21 @@
 			color: $whiteColor;
 			@include adaptiveValue("font-size", 16, 13);
 		}
+		&__schedule {
+        display: flex;
+        flex-direction: column;
+		//   align-items: center;
+		  @include adaptiveValue("gap", 10, 8);
+      //   padding-left: 22px;
+			// justify-content: flex-end;
+			
+        color: $greyColor;
+        @include adaptiveValue("font-size", 16, 13);
+    }
+
+    @media (max-width: $mobile) {
+      //   margin-bottom: rem(30);
+    }
 	}
 	
 /* Магазин открыт */
@@ -448,7 +477,7 @@
 .items-why {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		@include adaptiveValue("gap", 30, 20);
+		@include adaptiveValue("gap", 30, 10);
 		@media (max-width:$mobileSmall){
 			grid-template-columns: 1fr;
 		}
