@@ -1,0 +1,34 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master # Ветка, при пуше в которую запускается сборка
+      
+permissions:
+  contents: write
+  
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '24.13.0' # Укажите вашу версию node
+
+      - name: Install dependencies
+        run: npm i # Установка gulp и плагинов из package.json
+
+      - name: Build project
+        run: npm run build # Команда сборки в package.json (например, gulp)
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist # ПАПКА, КОТОРУЮ НУЖНО ЗАЛИТЬ (dist, build и т.д.)
+          branch: gh-pages # Ветка, куда деплоить
+          clean: true
