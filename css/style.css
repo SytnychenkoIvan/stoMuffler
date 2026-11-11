@@ -1710,6 +1710,10 @@ body._lock {
     padding: 0.9375rem 1.25rem;
   }
 
+  .action-tell {
+    margin-bottom: 0.9375rem;
+  }
+
   .form {
     display: flex;
     flex-direction: column;
