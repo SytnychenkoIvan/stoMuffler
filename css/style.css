@@ -192,7 +192,6 @@ body._lock {
 .actions {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
 }
 
 .icon-menu {
@@ -1026,7 +1025,8 @@ body._lock {
   }
 
   .actions {
-    gap: 1.25rem;
+    -moz-column-gap: 1.25rem;
+         column-gap: 1.25rem;
   }
 
   .actions__tell {
@@ -1305,7 +1305,8 @@ body._lock {
   }
 
   .actions {
-    gap: 0.625rem;
+    -moz-column-gap: 0.625rem;
+         column-gap: 0.625rem;
   }
 
   .actions__tell {
@@ -1710,10 +1711,6 @@ body._lock {
     padding: 0.9375rem 1.25rem;
   }
 
-  .action-tell {
-    margin-bottom: 0.9375rem;
-  }
-
   .form {
     display: flex;
     flex-direction: column;
@@ -1835,15 +1832,17 @@ body._lock {
     }
 }
 
-@supports (gap: clamp( 0.625rem , 0.4122340426rem  +  1.0638297872vw , 1.25rem )) {
+@supports ((-moz-column-gap: clamp( 0.625rem , 0.4122340426rem  +  1.0638297872vw , 1.25rem )) or (column-gap: clamp( 0.625rem , 0.4122340426rem  +  1.0638297872vw , 1.25rem ))) {
     .actions {
-      gap: clamp( 0.625rem , 0.4122340426rem  +  1.0638297872vw , 1.25rem );
+      -moz-column-gap: clamp( 0.625rem , 0.4122340426rem  +  1.0638297872vw , 1.25rem );
+           column-gap: clamp( 0.625rem , 0.4122340426rem  +  1.0638297872vw , 1.25rem );
     }
 }
 
-@supports not (gap: clamp( 0.625rem , 0.4122340426rem  +  1.0638297872vw , 1.25rem )) {
+@supports not ((-moz-column-gap: clamp( 0.625rem , 0.4122340426rem  +  1.0638297872vw , 1.25rem )) or (column-gap: clamp( 0.625rem , 0.4122340426rem  +  1.0638297872vw , 1.25rem ))) {
     .actions {
-      gap: calc(0.625rem + 0.625 * (100vw - 20rem) / 58.75);
+      -moz-column-gap: calc(0.625rem + 0.625 * (100vw - 20rem) / 58.75);
+           column-gap: calc(0.625rem + 0.625 * (100vw - 20rem) / 58.75);
     }
 }
 
