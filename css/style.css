@@ -178,9 +178,7 @@ body._lock {
 .menu__link {
   font-family: "Inter";
   font-weight: 400;
-}
-
-.menu__link {
+  font-size: 1rem;
   line-height: 1.4;
   display: inline-block;
   background: linear-gradient(to right, currentColor 0%, currentColor 100%) no-repeat;
@@ -1023,10 +1021,6 @@ body._lock {
          column-gap: 2.5rem;
   }
 
-  .menu__link {
-    font-size: 1rem;
-  }
-
   .actions {
     font-size: 1rem;
   }
@@ -1304,10 +1298,6 @@ body._lock {
   .menu__list {
     -moz-column-gap: 0.3125rem;
          column-gap: 0.3125rem;
-  }
-
-  .menu__link {
-    font-size: 0.75rem;
   }
 
   .actions {
@@ -1595,6 +1585,10 @@ body._lock {
 }
 
 @media (max-width: 61.99875em) {
+  .menu__link {
+    font-size: 1.125rem;
+  }
+
   .action-apointment {
     padding: 0.9375rem 0.9375rem;
   }
@@ -1822,18 +1816,6 @@ body._lock {
     .menu__list {
       -moz-column-gap: calc(0.3125rem + 2.1875 * (100vw - 20rem) / 58.75);
            column-gap: calc(0.3125rem + 2.1875 * (100vw - 20rem) / 58.75);
-    }
-}
-
-@supports (font-size: clamp( 0.75rem , 0.664893617rem  +  0.4255319149vw , 1rem )) {
-    .menu__link {
-      font-size: clamp( 0.75rem , 0.664893617rem  +  0.4255319149vw , 1rem );
-    }
-}
-
-@supports not (font-size: clamp( 0.75rem , 0.664893617rem  +  0.4255319149vw , 1rem )) {
-    .menu__link {
-      font-size: calc(0.75rem + 0.25 * (100vw - 20rem) / 58.75);
     }
 }
 
