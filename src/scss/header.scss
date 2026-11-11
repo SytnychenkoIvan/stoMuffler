@@ -143,8 +143,8 @@
 	@include adaptiveValue("font-size", 16, 10);
 	display: flex;
 	align-items: center;
-	gap: rem(20);
-	@include adaptiveValue("gap", 20, 10);
+	// gap: rem(20);
+	@include adaptiveValue("column-gap", 20, 10);
 	@media (max-width:$mobile){
 		flex-direction: column;
 		row-gap: rem(40);

@@ -388,28 +388,27 @@ body._lock {
 .actions {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
 }
 @media (min-width: 78.75em) {
   .actions {
-    gap: 1.25rem;
+    column-gap: 1.25rem;
   }
 }
 @media (min-width: 20em) and (max-width: 78.75em) {
-  @supports (gap: clamp( 0.625rem , 0.4122340426rem  +  1.0638297872vw , 1.25rem )) {
+  @supports (column-gap: clamp( 0.625rem , 0.4122340426rem  +  1.0638297872vw , 1.25rem )) {
     .actions {
-      gap: clamp( 0.625rem , 0.4122340426rem  +  1.0638297872vw , 1.25rem );
+      column-gap: clamp( 0.625rem , 0.4122340426rem  +  1.0638297872vw , 1.25rem );
     }
   }
-  @supports not (gap: clamp( 0.625rem , 0.4122340426rem  +  1.0638297872vw , 1.25rem )) {
+  @supports not (column-gap: clamp( 0.625rem , 0.4122340426rem  +  1.0638297872vw , 1.25rem )) {
     .actions {
-      gap: calc(0.625rem + 0.625 * (100vw - 20rem) / 58.75);
+      column-gap: calc(0.625rem + 0.625 * (100vw - 20rem) / 58.75);
     }
   }
 }
 @media (max-width: 20em) {
   .actions {
-    gap: 0.625rem;
+    column-gap: 0.625rem;
   }
 }
 @media (max-width: 47.99875em) {
@@ -732,11 +731,6 @@ body._lock {
 }
 .action-tell span {
   flex: 0 1 auto;
-}
-@media (max-width: 47.99875em) {
-  .action-tell {
-    margin-bottom: 0.9375rem;
-  }
 }
 @media (any-hover: hover) {
   .action-tell:hover {
