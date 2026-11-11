@@ -89,14 +89,14 @@
 	&__list {
 		display: flex;
 		flex-wrap: wrap;
-		// row-gap: rem(15);
-		@include adaptiveValue("row-gap",15 ,10 );
+		row-gap: rem(10);
+		// @include adaptiveValue("row-gap",15 ,10 );
 		@include adaptiveValue("column-gap", 40, 5);
 		align-items: center;
 		justify-content: center;
-		@media (max-width: em(1080)){
-			column-gap: rem(25);
-		}
+		// @media (max-width: em(1080)){
+		// 	// column-gap: rem(25);
+		// }
 		@media (max-width:$mobile){
 			flex-direction: column;
 			align-items: center;

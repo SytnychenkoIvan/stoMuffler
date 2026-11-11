@@ -274,28 +274,7 @@ body._lock {
 .menu__list {
   display: flex;
   flex-wrap: wrap;
-}
-@media (min-width: 78.75em) {
-  .menu__list {
-    row-gap: 0.9375rem;
-  }
-}
-@media (min-width: 20em) and (max-width: 78.75em) {
-  @supports (row-gap: clamp( 0.625rem , 0.5186170213rem  +  0.5319148936vw , 0.9375rem )) {
-    .menu__list {
-      row-gap: clamp( 0.625rem , 0.5186170213rem  +  0.5319148936vw , 0.9375rem );
-    }
-  }
-  @supports not (row-gap: clamp( 0.625rem , 0.5186170213rem  +  0.5319148936vw , 0.9375rem )) {
-    .menu__list {
-      row-gap: calc(0.625rem + 0.3125 * (100vw - 20rem) / 58.75);
-    }
-  }
-}
-@media (max-width: 20em) {
-  .menu__list {
-    row-gap: 0.625rem;
-  }
+  row-gap: 0.625rem;
 }
 @media (min-width: 78.75em) {
   .menu__list {
@@ -322,11 +301,6 @@ body._lock {
 .menu__list {
   align-items: center;
   justify-content: center;
-}
-@media (max-width: 67.5em) {
-  .menu__list {
-    column-gap: 1.5625rem;
-  }
 }
 @media (max-width: 47.99875em) {
   .menu__list {
