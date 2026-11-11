@@ -114,8 +114,8 @@
 	&__link {
 		font-family: $fontFamily;
 		font-weight: 400;
-		// font-size: rem(106);
-		@include adaptiveValue("font-size", 16, 12);
+		font-size: rem(16);
+		// @include adaptiveValue("font-size", 16, 12);
 		line-height: math.div(28 , 20);
 		display: inline-block;
 		background: linear-gradient(to right, currentColor 0%, currentColor 100%) no-repeat;
@@ -130,7 +130,7 @@
 			}
 		}
 		@media (max-width:$tablet){
-			// font-size: rem(18);
+			font-size: rem(18);
 		}
 		@media (max-width:$mobile){
 			font-size: rem(25);
