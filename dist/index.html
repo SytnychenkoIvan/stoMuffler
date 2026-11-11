@@ -46,8 +46,10 @@
 					<li class="menu__item"><a data-goto-header data-goto=".services" href="#" class="menu__link">Послуги</a>
 					</li>
 					<li class="menu__item"><a data-goto-header data-goto=".why" href="#" class="menu__link">Переваги</a></li>
-					<li class="menu__item"><a data-goto-header data-goto=".form-section" href="#" class="menu__link">Запис</a></li>
-					<li class="menu__item"><a data-goto-header data-goto=".contacts" href="" class="menu__link">Контакти</a></li>
+					<li class="menu__item"><a data-goto-header data-goto=".form-section" href="#"
+							class="menu__link">Запис</a></li>
+					<li class="menu__item"><a data-goto-header data-goto=".contacts" href="" class="menu__link">Контакти</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -56,7 +58,8 @@
 				<img src="img/icon/phone.svg" alt="Phone">
 				<span>+38 063 000 00 00</span>
 			</a>
-			<a data-goto-header data-goto=".form-section" href="#" class="actions__apointment action action-apointment">Запис онлайн</a>
+			<a data-goto-header data-goto=".form-section" href="#"
+				class="actions__apointment action action-apointment button-orang">Запис онлайн</a>
 		</div>
 		<button type="button" class="menu__icon icon-menu"><span></span></button>
 	</div>
@@ -397,6 +400,9 @@ form-section
 	</div>
 </footer>
 	</div>
+	<button class="ring" type="button" aria-label="Go to top">
+		↑
+	</button>
 	<script>const shopStatus = document.querySelector('.shop-status');
 		const shopStatusText = document.querySelector('.shop-status__text');
 
@@ -446,7 +452,33 @@ form-section
 
 		// Обновляем статус раз в 30 секунд
 		setInterval(updateShopStatus, 30000);</script>
+
+	<script>
+		const ringButton = document.querySelector('.ring');
+
+		if (ringButton) {
+			const showButton = () => {
+				if (window.scrollY > 500) {
+					ringButton.classList.add('show');
+				} else {
+					ringButton.classList.remove('show');
+				}
+			};
+
+			window.addEventListener('scroll', showButton);
+
+			ringButton.addEventListener('click', () => {
+				window.scrollTo({
+					top: 0,
+					behavior: 'smooth'
+				});
+			});
+
+			showButton();
+		}
+	</script>
 	<script src="js/app.min.js"></script>
+	
 </body>
 
 </html>

@@ -785,3 +785,29 @@
          }
 		}
 }
+//go to top========================================================================================================================================================
+.ring {
+    position: fixed;
+    right: rem(20);
+    bottom: rem(20);
+    z-index: 100;
+
+    width: rem(50);
+    height: rem(50);
+    border-radius: 50%;
+
+    background-color: $redColor;
+    color: $whiteColor;
+    font-size: rem(25);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(rem(15));
+    transition: all 0.3s ease;
+
+    &.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}

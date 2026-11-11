@@ -316,6 +316,9 @@
 		</main>
 		@@include('html/footer.html',{})
 	</div>
+	<button class="ring" type="button" aria-label="Go to top">
+		↑
+	</button>
 	<script>const shopStatus = document.querySelector('.shop-status');
 		const shopStatusText = document.querySelector('.shop-status__text');
 
@@ -365,7 +368,33 @@
 
 		// Обновляем статус раз в 30 секунд
 		setInterval(updateShopStatus, 30000);</script>
+
+	<script>
+		const ringButton = document.querySelector('.ring');
+
+		if (ringButton) {
+			const showButton = () => {
+				if (window.scrollY > 500) {
+					ringButton.classList.add('show');
+				} else {
+					ringButton.classList.remove('show');
+				}
+			};
+
+			window.addEventListener('scroll', showButton);
+
+			ringButton.addEventListener('click', () => {
+				window.scrollTo({
+					top: 0,
+					behavior: 'smooth'
+				});
+			});
+
+			showButton();
+		}
+	</script>
 	<script src="js/app.min.js"></script>
+	
 </body>
 
 </html>

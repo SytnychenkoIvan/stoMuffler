@@ -2679,3 +2679,25 @@ body._lock {
   width: 100%;
   height: 100%;
 }
+
+.ring {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 100;
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
+  background-color: #ED101A;
+  color: #ffffff;
+  font-size: 1.5625rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.9375rem);
+  transition: all 0.3s ease;
+}
+.ring.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}

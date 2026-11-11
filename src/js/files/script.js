@@ -80,18 +80,20 @@ function windowLoad() {
 
 // Функція показування кнопки при скролі =======================================================
 
-const ringButton = document.querySelector('.ring');
+// const ringButton = document.querySelector('.ring');
 
-const showButton = () => {
-	window.addEventListener('scroll', () => {
-		if (window.scrollY > 500) {
-			ringButton.classList.add('show');
-		} else {
-			ringButton.classList.remove('show');
-		}
-	})
-}
-showButton()
+// const showButton = () => {
+// 	window.addEventListener('scroll', () => {
+// 		if (window.scrollY > 500) {
+// 			ringButton.classList.add('show');
+// 		} else {
+// 			ringButton.classList.remove('show');
+// 		}
+// 	})
+// }
+// showButton()
+
+
 
 //Перемикання світлої та темної теми========================================================================================================================================================
 
