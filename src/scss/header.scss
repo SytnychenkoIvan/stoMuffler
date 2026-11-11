@@ -114,7 +114,7 @@
 	&__link {
 		font-family: $fontFamily;
 		font-weight: 400;
-		// font-size: rem(16);
+		// font-size: rem(106);
 		@include adaptiveValue("font-size", 16, 12);
 		line-height: math.div(28 , 20);
 		display: inline-block;
